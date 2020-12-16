@@ -1,6 +1,8 @@
 package org.dasd.persistence;
 
+import com.querydsl.core.BooleanBuilder;
 import org.dasd.domain.Board;
+import org.dasd.domain.QBoard;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
@@ -165,4 +168,65 @@ public class BoardRepositoryTest {
 
 
     }
+
+    @Test
+    public void testByTitle2(){
+        repo.findByTitle("17")
+                .forEach(board-> System.out.println(board));
+    }
+
+    @Test
+    public void testWriterAndContent(){
+
+        System.out.println("content");
+        repo.findByContent("content...122").forEach(board-> System.out.println(board));
+
+        System.out.println("writer");
+        repo.findByWriter("user02").forEach(board-> System.out.println(board));
+    }
+
+    @Test
+    public void testExceptContent(){
+        repo.findByTitle2("17").forEach(arr-> System.out.println(Arrays.toString(arr)));
+
+    }
+
+    @Test
+    public void testByPaging(){
+        Pageable pageable=PageRequest.of(0,10);
+        repo.findByPage(pageable).forEach(board-> System.out.println(board));
+    }
+
+    @Test
+    public void testPredicate(){
+        String type="t";
+        String keyWord="17";
+
+        BooleanBuilder builder=new BooleanBuilder();
+
+        QBoard board=QBoard.board;
+
+        if(type.equals("t")){
+            builder.and(board.title.like("%"+keyWord+"%"));
+        }
+
+        //bno>0
+
+        builder.and(board.bno.gt(0L));
+
+        Pageable pageable=PageRequest.of(0,10);
+
+        Page<Board>results=repo.findAll(builder,pageable);
+
+        System.out.println("Page Size" +results.getSize());
+        System.out.println("total pages: "+ results.getTotalPages());
+        System.out.println("Total count: "+results.getTotalElements());
+        System.out.println("next: "+ results.nextPageable());
+
+        List<Board>list= results.getContent();
+
+        list.forEach(b-> System.out.println(b));
+
+    }
+
 }

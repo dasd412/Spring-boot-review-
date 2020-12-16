@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: org.dasd.persistence.BoardRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 17, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 18.912 s <<< FAILURE! - in org.dasd.persistence.BoardRepositoryTest
+delete(org.dasd.persistence.BoardRepositoryTest)  Time elapsed: 0 s  <<< ERROR!
+org.springframework.dao.InvalidDataAccessApiUsageException: The entity must not be null!; nested exception is java.lang.IllegalArgumentException: The entity must not be null!
+	at org.dasd.persistence.BoardRepositoryTest.delete(BoardRepositoryTest.java:88)
+Caused by: java.lang.IllegalArgumentException: The entity must not be null!
+	at org.dasd.persistence.BoardRepositoryTest.delete(BoardRepositoryTest.java:88)
+
+update(org.dasd.persistence.BoardRepositoryTest)  Time elapsed: 0.031 s  <<< ERROR!
+java.lang.NullPointerException
+	at org.dasd.persistence.BoardRepositoryTest.update(BoardRepositoryTest.java:72)
+
