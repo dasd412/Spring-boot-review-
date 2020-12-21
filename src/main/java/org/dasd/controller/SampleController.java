@@ -77,4 +77,23 @@ public class SampleController {
         model.addAttribute("result",result);
 
     }
+
+    @GetMapping("/sample7")
+    public void sample7(Model model){
+        model.addAttribute("now",new Date());
+        model.addAttribute("price",123456789);
+        model.addAttribute("title","This is a just sample");
+        model.addAttribute("options",Arrays.asList("aaa","bbb","ccc","ddd"));
+
+    }
+
+    @GetMapping("/sample8")
+    public void sample8(Model model){
+
+    }
+
+    @GetMapping("sample/hello")
+    public void hello(){
+
+    }
 }
