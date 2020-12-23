@@ -1,6 +1,5 @@
-C:\Users\dasd4\Desktop\StartSpringBoot\src\main\java\org\dasd\controller\SampleController.java
-C:\Users\dasd4\Desktop\StartSpringBoot\src\main\java\org\dasd\domain\Board.java
-C:\Users\dasd4\Desktop\StartSpringBoot\src\main\java\org\dasd\persistence\BoardRepository.java
-C:\Users\dasd4\Desktop\StartSpringBoot\src\main\java\org\dasd\domain\SampleVO.java
-C:\Users\dasd4\Desktop\StartSpringBoot\target\generated-sources\java\org\dasd\domain\QBoard.java
+C:\Users\dasd4\Desktop\StartSpringBoot\target\generated-sources\java\org\dasd\domain\QWebBoard.java
+C:\Users\dasd4\Desktop\StartSpringBoot\src\main\java\org\dasd\controller\WebBoardController.java
+C:\Users\dasd4\Desktop\StartSpringBoot\src\main\java\org\dasd\persistence\WebBoardRepository.java
+C:\Users\dasd4\Desktop\StartSpringBoot\src\main\java\org\dasd\domain\WebBoard.java
 C:\Users\dasd4\Desktop\StartSpringBoot\src\main\java\org\dasd\Application.java
