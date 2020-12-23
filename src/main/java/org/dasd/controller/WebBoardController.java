@@ -1,7 +1,14 @@
 package org.dasd.controller;
 
 import lombok.extern.java.Log;
+import org.dasd.domain.WebBoard;
+import org.dasd.persistence.WebBoardRepository;
+import org.dasd.vo.PageVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,9 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Log
 public class WebBoardController {
 
-    @GetMapping("/list")
-    public void list(){
+    @Autowired
+    private WebBoardRepository repository;
 
-        log.info("list()called...");
+
+    @GetMapping("/list")
+    public void list(PageVO vo , Model model){
+
+        Pageable page=vo.makePageable(0,"bno");
+        Page<WebBoard>result=repository.findAll(repository.makePredicate(null,null),page);
+
+        log.info(""+page);
+        log.info(""+result);
+        model.addAttribute("result",result);
     }
 }
