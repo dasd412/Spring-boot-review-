@@ -3,6 +3,7 @@ package org.dasd.controller;
 import lombok.extern.java.Log;
 import org.dasd.domain.WebBoard;
 import org.dasd.persistence.WebBoardRepository;
+import org.dasd.vo.PageMaker;
 import org.dasd.vo.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +30,8 @@ public class WebBoardController {
 
         log.info(""+page);
         log.info(""+result);
-        model.addAttribute("result",result);
+
+        log.info("TOTAL PAGE NUMBER : "+result.getTotalPages());
+        model.addAttribute("result",new PageMaker<>(result));
     }
 }
