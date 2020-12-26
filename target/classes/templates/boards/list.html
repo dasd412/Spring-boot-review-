@@ -5,6 +5,11 @@ layout:decorate="~{/layout/layout1}">
 
 <div layout:fragment="content">
     <div class="panel-heading">List Page</div>
+
+    <div class="panel-body pull-right">
+        <h3><a class="label label-default" th:href="@{register}">Register</a></h3>
+    </div>
+
     <div class="panel-body">
         <div th:with="result=${result.result}">
 
@@ -85,6 +90,21 @@ layout:decorate="~{/layout/layout1}">
 
 <th:block layout:fragment="script">
     <script th:inline="javascript">
+
+       $(window).load(function(){
+
+        var msg=[[${msg}]];
+
+        if(msg=='success'){
+        alert("정상적으로 처리되었습니다.");
+
+
+        var stateObj={ msg: ""};
+        }
+
+        });
+
+
         $(document).ready(function(){
         var formObj=$("#f1");
 
@@ -112,7 +132,24 @@ layout:decorate="~{/layout/layout1}">
           formObj.submit();
 
         });
+
+      $(".boardLink").click(function(e){
+
+      e.preventDefault();
+
+      var boardNo=$(this).attr("href");
+
+      formObj.attr("action",[[@{'/boards/view'}]]);
+
+      formObj.append("<input type='hidden' name='bno' value='"+boardNo+"'>");
+
+      formObj.submit();
+
+      });
+
      });
+
+
 
 
     </script>
