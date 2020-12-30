@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 
 @Log
 @RestController
@@ -47,5 +49,49 @@ public class WebReplyController {
         return repository.getReplies(board);
     }
 
+    @Transactional
+    @DeleteMapping("/{bno}/{rno}")
+    public ResponseEntity<List<WebReply>>remove(@PathVariable("bno")Long bno, @PathVariable("rno")Long rno){
 
+        log.info("delete reply : "+rno);
+
+        repository.deleteById(rno);
+
+        WebBoard board=new WebBoard();
+        board.setBno(bno);
+
+        return new ResponseEntity<>(getListByBoard(board),HttpStatus.OK);
+
+
+    }
+
+    @Transactional
+    @PutMapping("/{bno}")
+    public ResponseEntity<List<WebReply>>modify(@PathVariable("bno")Long bno, @RequestBody WebReply reply){
+        log.info("modify reply : "+reply);
+
+        repository.findById(reply.getRno()).ifPresent(origin->{
+            origin.setReplyText(reply.getReplyText());
+
+            origin.setReplyer(reply.getReplyer());
+
+            repository.save(origin);
+        });
+
+        WebBoard board=new WebBoard();
+        board.setBno(bno);
+
+        return new ResponseEntity<>(getListByBoard(board),HttpStatus.CREATED);
+    }
+
+
+    @GetMapping("/{bno}")
+    public ResponseEntity<List<WebReply>>getReplies(@PathVariable("bno")Long bno){
+        log.info("get all replies...");
+
+        WebBoard board=new WebBoard();
+        board.setBno(bno);
+        return new ResponseEntity<>(getListByBoard(board),HttpStatus.OK);
+
+    }
 }
