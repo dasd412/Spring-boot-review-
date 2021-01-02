@@ -2,6 +2,7 @@ package org.dasd.controller;
 
 import lombok.extern.java.Log;
 import org.dasd.domain.WebBoard;
+import org.dasd.persistence.CustomCrudRepository;
 import org.dasd.persistence.WebBoardRepository;
 import org.dasd.vo.PageMaker;
 import org.dasd.vo.PageVO;
@@ -22,14 +23,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class WebBoardController {
 
     @Autowired
-    private WebBoardRepository repository;
+   // private WebBoardRepository repository;
 
+    private CustomCrudRepository repository;
 
     @GetMapping("/list")
     public void list(@ModelAttribute("pageVO") PageVO vo , Model model){
 
         Pageable page=vo.makePageable(0,"bno");
-        Page<WebBoard>result=repository.findAll(repository.makePredicate(vo.getType(),vo.getKeyword()),page);
+        Page<Object[]>result=repository.getCustomPage(vo.getType(),vo.getKeyword(),page);
 
         log.info(""+page);
         log.info(""+result);

@@ -1,5 +1,6 @@
+org\dasd\domain\QWebReply.class
+org\dasd\controller\WebBoardController.class
+org\dasd\domain\QWebBoard.class
 org\dasd\domain\WebBoard.class
 org\dasd\persistence\WebBoardRepository.class
 org\dasd\Application.class
-org\dasd\controller\WebBoardController.class
-org\dasd\domain\QWebBoard.class

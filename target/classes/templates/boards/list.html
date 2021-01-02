@@ -24,14 +24,14 @@ layout:decorate="~{/layout/layout1}">
                 </thead>
 
                 <tbody>
-                <tr class="odd gradeX" th:each="board:${result.content}">
-                    <td>[[${board.bno}]]</td>
-                    <td><a th:href="${board.bno}" class="boardLink">[[${board.title}]]</a>
+                <tr class="odd gradeX" th:each="arr:${result.content}">
+                    <td>[[${arr[0]}]]</td>
+                    <td><a th:href="${arr[0]}" class="boardLink">[[${arr[1]}]]</a>
 
-                        <span class="badge">[[${board.replies.size()}]]</span>
+                        <span class="badge">[[${arr[2]}]]</span>
                     </td>
-                    <td>[[${board.writer}]]</td>
-                    <td class="center">[[${#dates.format(board.regDate,'yyyy-MM-dd')}]]</td>
+                    <td>[[${arr[3]}]]</td>
+                    <td class="center">[[${#dates.format(arr[4],'yyyy-MM-dd')}]]</td>
                 </tr>
 
                 </tbody>
@@ -56,7 +56,7 @@ layout:decorate="~{/layout/layout1}">
             <div>
                 <ul class="pagination">
                     <li class="page-item" th:if="${result.prevPage}">
-                        <a href="#">PREV[[${result.prevPage.pageNumber}+1]]</a>
+                        <a th:href="${result.prevPage.pageNumber}+1">PREV[[${result.prevPage.pageNumber}+1]]</a>
                     </li>
 
                     <li class="page-item"
@@ -65,7 +65,7 @@ layout:decorate="~{/layout/layout1}">
                             th:href="${p.pageNumber} +1">[[${p.pageNumber} +1]]</a></li>
 
                     <li class="page-item" th:if="${result.nextPage}">
-                        <a href="#">NEXT[[${result.nextPage.pageNumber}+1]]</a>
+                        <a th:href="${result.nextPage.pageNumber}+1">NEXT[[${result.nextPage.pageNumber}+1]]</a>
                     </li>
 
                 </ul>

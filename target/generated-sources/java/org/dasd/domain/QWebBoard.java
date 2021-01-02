@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -24,6 +25,8 @@ public class QWebBoard extends EntityPathBase<WebBoard> {
     public final StringPath content = createString("content");
 
     public final DateTimePath<java.sql.Timestamp> regDate = createDateTime("regDate", java.sql.Timestamp.class);
+
+    public final ListPath<WebReply, QWebReply> replies = this.<WebReply, QWebReply>createList("replies", WebReply.class, QWebReply.class, PathInits.DIRECT2);
 
     public final StringPath title = createString("title");
 
