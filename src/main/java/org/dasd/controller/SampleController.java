@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Log
-@RequestMapping("/sample/")
+
 public class SampleController {
 
     @GetMapping("/")
